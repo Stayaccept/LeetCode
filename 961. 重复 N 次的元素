@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int repeatedNTimes(vector<int>& A) {
+        int i,u,n;
+        int vis[10005];
+        n=A.size();
+        memset(vis,0,sizeof(vis));
+        for(i=0;i<n;i++)
+        vis[A[i]]++;
+        for(i=0;i<n;i++)
+        if(vis[A[i]]==n/2)
+        u=A[i];
+        return u;
+    }
+};
