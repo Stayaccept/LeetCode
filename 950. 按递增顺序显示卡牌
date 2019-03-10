@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<int> deckRevealedIncreasing(vector<int>& deck) {
+        queue<int> qu;
+        vector<int> ans;
+        int i,j,u;
+        sort(deck.begin(),deck.end(),greater<int>());
+        qu.push(deck[0]);
+        for(i=1;i<deck.size();i++){
+            u=qu.front();
+            qu.pop();
+            qu.push(u);
+            qu.push(deck[i]);
+        }
+        while(qu.size()){
+            ans.push_back(qu.front());
+            qu.pop();
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+};
