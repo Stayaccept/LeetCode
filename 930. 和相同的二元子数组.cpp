@@ -1,3 +1,4 @@
+//1
 class Solution {
 public:
     int s[30005];
@@ -17,4 +18,22 @@ public:
         return ans;
     }
     
+};
+//2
+class Solution {
+public:
+    int numSubarraysWithSum(vector<int>& A, int S) {
+        int i,n,ans,sum;
+        map<int,int> mp;
+        n=A.size();
+        mp.clear();
+        ans=sum=0;
+        mp[0]=1;
+        for(i=0;i<n;i++){
+            sum+=A[i];
+            ans+=mp[sum-S];
+            mp[sum]++;
+        }
+        return ans;
+    }
 };
