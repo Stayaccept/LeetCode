@@ -1,0 +1,35 @@
+/*
+ * @lc app=leetcode.cn id=688 lang=cpp
+ *
+ * [688] “马”在棋盘上的概率
+ */
+class Solution {
+public:
+    double dp[30][30][105];
+    int xx[8]={-1,-2,-2,-1,1,2,2,1};
+    int yy[8]={-2,-1,1,2,2,1,-1,-2};
+    double knightProbability(int N, int K, int r, int c) {
+        double ans;
+        int i,j,k,p,tmpx,tmpy;
+        dp[r][c][0]=1;
+        for(k=1;k<=K;k++){
+            for(i=0;i<N;i++){
+                for(j=0;j<N;j++){
+                    for(p=0;p<8;p++){
+                        tmpx=i+xx[p];
+                        tmpy=j+yy[p];
+                        if(tmpx<0||tmpx>=N||tmpy<0||tmpy>=N)
+                        continue;
+                        dp[i][j][k]+=dp[tmpx][tmpy][k-1]/8;
+                    }
+                }
+            }
+        }
+        ans=0;
+        for(i=0;i<N;i++)
+        for(j=0;j<N;j++)
+        ans+=dp[i][j][K];
+        return ans;
+    }
+};
+
